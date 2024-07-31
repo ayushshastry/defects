@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html ng-app = "DefectsApp">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Predicting Defects in Manufacturing Using Random Forest </title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://d3js.org/d3.v6.min.js"> </script>
+    <script src="js/angular.min.js"> </script>
+    <script src="app/app.controller.js"> </script>
+    <script src="app/app.module.js"> </script>
+    <script src="app/app.service.js"> </script>
+    <script src="app/d3.directive.js"> </script>
+    <script src="js/chart.min.js"> </script>
+</head>
+<body ng-controller = "DefectController">
+    <h1>
+        Manufacturing Defects Forecast using Random Forest
+    </h1>
+    <div id="introduction">
+        <div id="start"> Please enter your name to proceed! </div>
+        <div id="box">
+            <input type="text" ng-model="name">
+            <button ng-click="displayMessage()"> Enter </button>
+            <div id="message"> {{message}} </div>
+            <button ng-show="message" ng-click="nextStep()"> Continue to data set introduction </button>
+        </div>
+    </div>
+    <div id="dataset" ng-show="step >= 2">
+        <h2 id="one"> Data Set Details </h2>
+        <p id="details"> 
+            This data set focuses on whether or not there are manufacturing defects.
+            The target variable, defect status, is a binary variable. 
+            "0" indicates a defect, while "1" indicates no problems in manufacturing.
+            Some of the predictors include: Production volume, production cost, defect rate, energy consumption, etc.
+            Since the target variable is binary, I know that I have to use RandomForestClassifier() when I get to the modeling section.
+            Displayed on the right is the first couple rows of the data set.
+        </p>
+        <img src="static/head.png" id="tree">
+        <div id="cont"> <button ng-click="nextStep()"> Continue to Exploratory Data Analysis </button> </div>
+    </div>
+    <div id="eda" ng-show="step >= 3">
+        <h2> Exploratory Data Analysis </h2>
+        <p> This will be eda. How many null values, types of predictors, etc... </p>
+        <button ng-click="nextStep()"> Continue to Data Visualizations </button>
+    </div>
+    <div id="viz" ng-show="step >= 4">
+        <h2> Data Visualizations </h2>
+        <p> This is where all the Visualizations will be from my jupyter notebook </p>
+        <button ng-click="nextStep()"> Continue to Random Forest Model </button>
+    </div>
+    <div id="forest" ng-show="step >= 5">
+        <h2> Random Forest Model </h2>
+        <p> 
+            This is where the random forest model will be including feature selection and such 
+            (need to do more work on the model section)
+        </p>
+        <button ng-click="nextStep()"> Continue to Conclusion </button>
+    </div>
+    <div id="conclusion" ng-show="step >= 6">
+        <h2> Conclusion and Improvments </h2>
+        <p> This is where you'll talk about important variables and potential improvements to the model (data imbalance) </p>
+        <div> Thank you for visiting my website! </div>
+        <div id="links"> This is where you'll link python script </div>
+    </div>
+</body>
+</html>
